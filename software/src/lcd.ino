@@ -24,13 +24,13 @@ void lcd_init() {
     digitalWrite(LCD_SAFETY_GROUND, LOW);
 
     lcd.begin(16, 4);
-    lcd.print("Status: ");
-    lcd.setCursor(0, 1); lcd.print("Moisture: ");
-    lcd.setCursor(0, 2); lcd.print("Temperature: ");
-    lcd.setCursor(0, 3); lcd.print("Water Level: ");
+    lcd.setCursor(0, 0); lcd.print("Status: null");
+    lcd.setCursor(0, 1); lcd.print("Moisture: null");
+    lcd.setCursor(0, 2); lcd.print("Temperature: null");
+    lcd.setCursor(0, 3); lcd.print("Water Level: null");
 }
 
 void lcd_pump_status(String status) {
-    lcd.setCursor(8, 0);
-    lcd.print(status);
+    lcd.setCursor(0, 0);
+    lcd.print("Status: " + status);
 }
