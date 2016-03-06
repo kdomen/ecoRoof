@@ -1,4 +1,6 @@
-#include <LiquidCrystal.h>
+#include "config.h"
+#include "lcd.h"
+#include "pump.h"
 
 LiquidCrystal lcd(7, 8, 9, 10, 11, 12);
 
@@ -13,14 +15,6 @@ void setup() {
     pinMode(4, OUTPUT);
 }
 
-void loop() {
-    digitalWrite(3, HIGH);
-    delay(750);
-    digitalWrite(3, LOW);
-    delay(750);
-
-    digitalWrite(4, HIGH);
-    delay(750);
-    digitalWrite(4, LOW);
-    delay(750);
+void setup() {
+    pinMode(SIGNAL_PIN, OUTPUT);
 }
