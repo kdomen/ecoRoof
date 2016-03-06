@@ -11,8 +11,8 @@
 #define US_SIGNAL 1
 
 /* reservoir and rainbox pump control */
-#define RESV_PUMP_CONTROL 2
-#define RBOX_PUMP_CONTROL 3
+#define RESV_PUMP 2
+#define RBOX_PUMP 3
 
 /* main LCD */
 #define LCD_CONTRAST 4
