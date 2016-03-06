@@ -15,6 +15,6 @@ void loop() {
 
     set_pump(RESV_PUMP, LOW);
     set_pump(RBOX_PUMP, HIGH);
-    lcd_pump_status("Raining...");
+    lcd_pump_status("Raining...   ");
     delay(800);
 }
