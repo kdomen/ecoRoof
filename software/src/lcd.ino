@@ -21,7 +21,7 @@ void lcd_init() {
 
     /* safety ground -- just in case! */
     pinMode(LCD_SAFETY_GROUND, OUTPUT);
-    digitalWrite(LCD_SAFETY_GROUND, LOW):
+    digitalWrite(LCD_SAFETY_GROUND, LOW);
 
     lcd.begin(16, 4);
     lcd.print("Status: ");
