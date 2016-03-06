@@ -10,6 +10,10 @@
 /* ultrasonic sensor */
 #define US_SIGNAL 1
 
+/* DS18B20 signal pin,
+ * (make sure this has the 4.7K pullup resistor) */
+#define TEMP_SIGNAL 22
+
 /* reservoir and rainbox pump control */
 #define RESV_PUMP 2
 #define RBOX_PUMP 3

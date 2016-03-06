@@ -34,3 +34,10 @@ void lcd_pump_status(String status) {
     lcd.setCursor(0, 0);
     lcd.print("Status: " + status);
 }
+
+void lcd_temp_status(float temp) {
+    lcd.setCursor(13, 2);
+    lcd.print(temp);
+    lcd.print((char) 223);
+    lcd.print("C");
+}
