@@ -8,5 +8,6 @@
 #define LCD_H
 
 void lcd_init();
+void lcd_pump_status(String status);
 
 #endif /* LCD_H */

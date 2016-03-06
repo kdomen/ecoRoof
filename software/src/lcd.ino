@@ -29,3 +29,8 @@ void lcd_init() {
     lcd.setCursor(0, 2); lcd.print("Temperature: ");
     lcd.setCursor(0, 3); lcd.print("Water Level: ");
 }
+
+void lcd_pump_status(String status) {
+    lcd.setCursor(0, 8);
+    lcd.print(status);
+}
