@@ -20,9 +20,9 @@
 #define LCD_ENABLE 6
 #define LCD_BACKLIGHT 13
 
-#define LCD_D4 8
-#define LCD_D5 9
-#define LCD_D6 10
-#define LCD_D7 11
+#define LCD_D4 9
+#define LCD_D5 10
+#define LCD_D6 11
+#define LCD_D7 12
 
 #endif /* CONFIG_H */
