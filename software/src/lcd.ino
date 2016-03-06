@@ -31,6 +31,6 @@ void lcd_init() {
 }
 
 void lcd_pump_status(String status) {
-    lcd.setCursor(0, 8);
+    lcd.setCursor(8, 0);
     lcd.print(status);
 }
