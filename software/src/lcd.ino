@@ -3,6 +3,7 @@
  *
  * LCD status routines.
  */
+// kyle's comment
 
 #include "lcd.h"
 #include "config.h"
