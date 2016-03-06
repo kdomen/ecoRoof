@@ -17,7 +17,8 @@
 /* main LCD */
 #define LCD_CONTRAST 4
 #define LCD_RS 5
-#define LCD_ENABLE 6
+#define LCD_SAFETY_GROUND 6
+#define LCD_ENABLE 7
 #define LCD_BACKLIGHT 13
 
 #define LCD_D4 9

@@ -14,10 +14,14 @@ LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 void lcd_init() {
     /* setup contrast and backlight */
-    pinMode(LCD_CONTRAST,  OUTPUT);
-    pinMode(LCD_BACKLIGHT, OUTPUT);
-    analogWrite(LCD_CONTRAST,  (1.57) /5*255);
-    analogWrite(LCD_BACKLIGHT, (3.20) /5*255);
+    pinMode(LCD_CONTRAST,      OUTPUT);
+    pinMode(LCD_BACKLIGHT,     OUTPUT);
+    analogWrite(LCD_CONTRAST,  (1.57) /5*255); /* 1.57V */
+    analogWrite(LCD_BACKLIGHT, (3.20) /5*255); /* 3.20V */
+
+    /* safety ground -- just in case! */
+    pinMode(LCD_SAFETY_GROUND, OUTPUT);
+    digitalWrite(LCD_SAFETY_GROUND, LOW):
 
     lcd.begin(16, 4);
     lcd.print("Status: ");
