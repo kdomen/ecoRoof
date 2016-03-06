@@ -6,6 +6,8 @@
 
 #include "lcd.h"
 #include "config.h"
+
+#include <Arduino.h>
 #include <LiquidCrystal.h>
 
 LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
