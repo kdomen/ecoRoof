@@ -18,6 +18,7 @@
 #define LCD_CONTRAST 4
 #define LCD_RS 5
 #define LCD_ENABLE 6
+#define LCD_BACKLIGHT 15
 
 #define LCD_D4 7
 #define LCD_D5 8
