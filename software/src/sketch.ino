@@ -12,15 +12,18 @@ void setup() {
 }
 
 void loop() {
+    struct lcd_status_t status;
+    status.temp = read_temp();
+
     set_pump(RESV_PUMP, HIGH);
     set_pump(RBOX_PUMP, LOW);
-    lcd_pump_status("Irrigating..");
-    lcd_temp_status(read_temp());
+    status.message = "Irrigating...";
+    lcd_update_status(status);
     delay(800);
 
     set_pump(RESV_PUMP, LOW);
     set_pump(RBOX_PUMP, HIGH);
-    lcd_pump_status("Raining...  ");
-    lcd_temp_status(read_temp());
+    status.message = "Raining...";
+    lcd_update_status(status);
     delay(800);
 }

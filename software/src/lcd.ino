@@ -24,20 +24,23 @@ void lcd_init() {
     digitalWrite(LCD_SAFETY_GROUND, LOW);
 
     lcd.begin(16, 4);
-    lcd.setCursor(0, 0); lcd.print("Status: null");
-    lcd.setCursor(0, 1); lcd.print("Moisture: null");
-    lcd.setCursor(0, 2); lcd.print("Temperature: null");
-    lcd.setCursor(0, 3); lcd.print("Water Level: null");
+    lcd.print("Booting...");
+  //lcd.setCursor(0, 0); lcd.print("Status: null");
+  //lcd.setCursor(0, 1); lcd.print("Moisture: null");
+  //lcd.setCursor(0, 2); lcd.print("Temperature: null");
+  //lcd.setCursor(0, 3); lcd.print("Water Level: null");
 }
 
-void lcd_pump_status(String status) {
+void lcd_update_status(struct lcd_status_t status) {
+    lcd.clear();
+
+    /* message line */
     lcd.setCursor(0, 0);
-    lcd.print("Status: " + status);
-}
+    lcd.print(status.message);
 
-void lcd_temp_status(float temp) {
-    lcd.setCursor(13, 2);
-    lcd.print(temp);
+    /* temperature */
+    lcd.setCursor(0, 2);
+    lcd.print(status.temp);
     lcd.print((char) 223);
-    lcd.print("C");
+    lcd.print("F");
 }

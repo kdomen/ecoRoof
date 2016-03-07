@@ -7,8 +7,14 @@
 #ifndef LCD_H
 #define LCD_H
 
+struct lcd_status_t {
+    String message;
+    float humidity;
+    float temp;
+    float water_level;
+};
+
 void lcd_init();
-void lcd_pump_status(String status);
-void lcd_temp_status(float temp);
+void lcd_update_status(struct lcd_status_t status);
 
 #endif /* LCD_H */
