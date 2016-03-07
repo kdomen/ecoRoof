@@ -1,11 +1,14 @@
 #include "lcd.h"
 #include "temp.h"
 #include "pump.h"
+#include "matrix.h"
 #include "config.h"
 
 void setup() {
     lcd_init();
     pump_init();
+    matrix_init();
+    matrix_all_on();
 }
 
 void loop() {

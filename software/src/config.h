@@ -30,4 +30,13 @@
 #define LCD_D6 11
 #define LCD_D7 12
 
+/* matrix row control pins */
+#define MATRIX_ROW1 51
+#define MATRIX_ROW2 49
+#define MATRIX_ROW3 47
+#define MATRIX_ROW4 45
+#define MATRIX_ROW5 43
+#define MATRIX_ROW6 41
+#define MATRIX_ROW7 39
+
 #endif /* CONFIG_H */
