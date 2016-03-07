@@ -17,6 +17,7 @@
 /* reservoir and rainbox pump control */
 #define RESV_PUMP 2
 #define RBOX_PUMP 3
+#define NULL_PUMP -1 // don't pump at all
 
 /* main LCD */
 #define LCD_CONTRAST 4
@@ -38,5 +39,11 @@
 #define MATRIX_ROW5 43
 #define MATRIX_ROW6 41
 #define MATRIX_ROW7 39
+
+/* control buttons */
+#define UPPER_BUTTON_PIN 2
+#define LOWER_BUTTON_PIN 3
+#define UPPER_BUTTON_INT 0
+#define LOWER_BUTTON_INT 1
 
 #endif /* CONFIG_H */

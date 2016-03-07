@@ -32,13 +32,15 @@ void lcd_init() {
 }
 
 void lcd_update_status(struct lcd_status_t status) {
-    lcd.clear();
-
     /* message line */
+    lcd.setCursor(0, 0);
+    lcd.print("                ");
     lcd.setCursor(0, 0);
     lcd.print(status.message);
 
     /* temperature */
+    lcd.setCursor(0, 2);
+    lcd.print("                ");
     lcd.setCursor(0, 2);
     lcd.print(status.temp);
     lcd.print((char) 223);
