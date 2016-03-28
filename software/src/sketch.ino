@@ -44,6 +44,8 @@ void loop() {
     set_pump(RBOX_PUMP, LOW);
     if (running_pump != NULL_PUMP)
         set_pump(running_pump, HIGH);
+    else
+        lcd_update_message("Waiting...");
 
     static float temp, humidity, water_level;
 
