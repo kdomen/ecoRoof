@@ -8,7 +8,7 @@
 #define CONFIG_H
 
 /* ultrasonic sensor */
-#define US_SIGNAL 1
+#define US_SIGNAL 53
 
 /**
  * DS18B20 temperature sensor:

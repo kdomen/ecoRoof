@@ -55,4 +55,9 @@ void lcd_update_status(struct lcd_status_t status) {
     lcd.print(status.temp);
     lcd.print((char) 223);
     lcd.print("F");
+
+    /* water level */
+    lcd_clear_row(3);
+    lcd.print(status.water_level, 2);
+    lcd.print("% water level");
 }

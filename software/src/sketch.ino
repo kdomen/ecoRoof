@@ -5,6 +5,7 @@
 #include "pump.h"
 #include "matrix.h"
 #include "humidity.h"
+#include "ultrasonic.h"
 
 #include <Arduino.h>
 #include <pins_arduino.h>
@@ -41,6 +42,7 @@ void loop() {
 
     status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
     status.humidity = humidity_read();
+    status.water_level = read_water_level();
 
     lcd_update_status(status);
     delay(800);
