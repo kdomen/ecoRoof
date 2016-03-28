@@ -10,8 +10,14 @@
 /* ultrasonic sensor */
 #define US_SIGNAL 1
 
-/* DS18B20 signal pin,
- * (make sure this has the 4.7K pullup resistor) */
+/**
+ * DS18B20 temperature sensor:
+ *
+ *   Red    - +5V
+ *   Black  - GND
+ *   Yellow - Signal
+ *
+ * (make sure this has the 4.7K pullup resistor between signal and 5V) */
 #define TEMP_SIGNAL 22
 
 /* reservoir and rainbox pump control */
