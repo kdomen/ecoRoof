@@ -52,7 +52,7 @@ void loop() {
     water_level = read_water_level();
 
     // write out status stuff to LCD
-    if (tick > 16) {
+    if (tick > 8) {
         tick = 0;
         lcd_update_status(humidity, temp, water_level);
     }
