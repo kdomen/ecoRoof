@@ -25,8 +25,8 @@ void setup() {
     pinMode(UPPER_BUTTON, OUTPUT);
     pinMode(LOWER_BUTTON, OUTPUT);
 
-    attachInterrupt(digitalPinToInterrupt(UPPER_BUTTON), ub_isr, CHANGE);
-    attachInterrupt(digitalPinToInterrupt(LOWER_BUTTON), lb_isr, CHANGE);
+    attachInterrupt(0, ub_isr, CHANGE);
+    attachInterrupt(1, lb_isr, CHANGE);
 }
 
 void loop() {
