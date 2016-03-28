@@ -10,6 +10,7 @@
 #include <Arduino.h>
 #include <pins_arduino.h>
 
+volatile unsigned long last_press;
 volatile int running_pump = NULL_PUMP;
 
 void setup() {
@@ -50,11 +51,17 @@ void loop() {
 }
 
 void ub_isr() {
-    Serial.println("upper");
+    if ((millis() - last_press) < 100)
+        return;
+
     running_pump = RBOX_PUMP;
+    last_press = millis();
 }
 
 void lb_isr() {
-    Serial.println("lower");
+    if ((millis() - last_press) < 100)
+        return;
+
     running_pump = RESV_PUMP;
+    last_press = millis();
 }
