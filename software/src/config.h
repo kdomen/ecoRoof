@@ -18,8 +18,8 @@
 #define TEMP_SIGNAL 22
 
 /* reservoir and rainbox pump control */
-#define RESV_PUMP 2
-#define RBOX_PUMP 3
+#define RESV_PUMP 24
+#define RBOX_PUMP 26
 #define NULL_PUMP -1 // don't pump at all
 
 /* ultrasonic sensor */
