@@ -24,6 +24,7 @@ void setup() {
     matrix_all_on();
 
     /* setup upper and lower control buttons */
+    last_press = millis();
     pinMode(UPPER_BUTTON, INPUT);
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
