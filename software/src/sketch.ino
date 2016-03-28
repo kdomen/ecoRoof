@@ -29,6 +29,8 @@ void setup() {
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
+    attachInterrupt(UPPER_BUTTON_INT, ub_isr, FALLING);
+    attachInterrupt(LOWER_BUTTON_INT, lb_isr, FALLING);
 }
 
 void loop() {
@@ -47,4 +49,12 @@ void loop() {
 
     lcd_update_status(status);
     delay(100);
+}
+
+void ub_isr() {
+    running_pump = RBOX_PUMP;
+}
+
+void lb_isr() {
+    running_pump = RESV_PUMP;
 }
