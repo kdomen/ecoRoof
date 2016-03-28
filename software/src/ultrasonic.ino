@@ -8,7 +8,7 @@
 #include "config.h"
 
 float read_water_level() {
-    static float previous[5] = {0};
+    static float previous[50] = {0};
 
     double distance =
         microseconds_to_cm(
@@ -16,18 +16,17 @@ float read_water_level() {
 
     double perc = (RESV_HEIGHT - distance) / RESV_HEIGHT;
 
-    previous[0] = previous[1];
-    previous[1] = previous[2];
-    previous[2] = previous[3];
-    previous[3] = previous[4];
-    previous[4] = perc;
+    for (int i = 0; i < 50; i++) {
+        previous[i] = previous[i+1];
+    }
+    previous[49] = perc;
 
     double sum = 0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 50; i++) {
         sum += previous[i];
     }
 
-    return sum/5;
+    return sum/50;
 }
 
 unsigned long ultrasonic_read() {
