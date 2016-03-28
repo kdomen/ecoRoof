@@ -18,8 +18,8 @@
 #define TEMP_SIGNAL 22
 
 /* reservoir and rainbox pump control */
-#define RESV_PUMP 24
-#define RBOX_PUMP 26
+#define RESV_PUMP 24 // to irrigate...
+#define RBOX_PUMP 26 // to simulate rain...
 #define NULL_PUMP -1 // don't pump at all
 
 /* ultrasonic sensor */
@@ -52,8 +52,8 @@
 #define MATRIX_ROW7 39
 
 /* control buttons */
-#define UPPER_BUTTON 2
-#define LOWER_BUTTON 3
+#define UPPER_BUTTON 2 // blue wire
+#define LOWER_BUTTON 3 // orange wire
 #define UPPER_BUTTON_INT 0
 #define LOWER_BUTTON_INT 1
 
