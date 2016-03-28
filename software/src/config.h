@@ -7,9 +7,6 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-/* ultrasonic sensor */
-#define US_SIGNAL 53
-
 /**
  * DS18B20 temperature sensor:
  *
@@ -24,6 +21,9 @@
 #define RESV_PUMP 2
 #define RBOX_PUMP 3
 #define NULL_PUMP -1 // don't pump at all
+
+/* ultrasonic sensor */
+#define US_SIGNAL 53
 
 /* humidity sensor */
 #define HUMIDITY_POWER  52

@@ -7,11 +7,6 @@
 #include "ultrasonic.h"
 #include "config.h"
 
-void ultrasonic_init() {
-    pinMode(US_SIGNAL, OUTPUT);
-    digitalWrite(US_SIGNAL, LOW);
-}
-
 float read_water_level() {
     double distance =
         microseconds_to_cm(
@@ -36,7 +31,7 @@ unsigned long ultrasonic_read() {
     
     // measure the return pulse length
     pinMode(US_SIGNAL, INPUT);
-    unsigned long duration =  pulseIn(US_SIGNAL, HIGH);
+    long duration = pulseIn(US_SIGNAL, HIGH);
 
     Serial.print("duration = ");
     Serial.println(duration);
