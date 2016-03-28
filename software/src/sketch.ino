@@ -10,6 +10,7 @@
 #include <Arduino.h>
 #include <pins_arduino.h>
 
+volatile unsigned long tick = 0x00;
 volatile int running_pump = NULL_PUMP;
 
 void setup() {
@@ -39,6 +40,8 @@ void setup() {
 }
 
 void loop() {
+    tick++;
+
     // switch pumps
     set_pump(RESV_PUMP, LOW);
     set_pump(RBOX_PUMP, LOW);
@@ -52,7 +55,9 @@ void loop() {
     water_level = read_water_level();
 
     // write out status stuff to LCD
-    if (millis() % 500 == 0) {
+    if (tick > 127) {
+        tick = 0;
+
         String message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
         lcd_update_status(message, temp, humidity, water_level);
     }
