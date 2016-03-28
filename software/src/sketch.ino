@@ -55,12 +55,10 @@ void ub_isr() {
     Serial.println("upper button");
 
     running_pump = RBOX_PUMP;
-    last_press = millis();
 }
 
 void lb_isr() {
     Serial.println("lower button");
 
     running_pump = RESV_PUMP;
-    last_press = millis();
 }
