@@ -1,5 +1,5 @@
 /**
- * lcd.cpp
+ * lcd.ino
  *
  * LCD status routines.
  */

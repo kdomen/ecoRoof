@@ -1,5 +1,5 @@
 /**
- * pump.cpp
+ * pump.ino
  *
  * Pump control routines.
  */

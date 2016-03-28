@@ -1,8 +1,10 @@
+#include "config.h"
+
 #include "lcd.h"
 #include "temp.h"
 #include "pump.h"
 #include "matrix.h"
-#include "config.h"
+#include "humidity.h"
 
 #include <Arduino.h>
 #include <pins_arduino.h>
@@ -15,6 +17,7 @@ void setup() {
 
     lcd_init();
     pump_init();
+    humidity_init();
     matrix_init();
     matrix_all_on();
 
@@ -37,6 +40,7 @@ void loop() {
         set_pump(running_pump, HIGH);
 
     status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
+    status.humidity = (float) humidity_read();
 
     lcd_update_status(status);
     delay(800);

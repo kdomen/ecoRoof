@@ -1,5 +1,5 @@
 /**
- * temp.cpp
+ * temp.ino
  *
  * DS18B20 temperature sensor.
  */

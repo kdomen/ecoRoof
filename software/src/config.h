@@ -25,6 +25,10 @@
 #define RBOX_PUMP 3
 #define NULL_PUMP -1 // don't pump at all
 
+/* humidity sensor */
+#define HUMIDITY_POWER  52
+#define HUMIDITY_SIGNAL 15
+
 /* main LCD */
 #define LCD_CONTRAST 4
 #define LCD_RS 5
@@ -32,6 +36,7 @@
 #define LCD_ENABLE 7
 #define LCD_BACKLIGHT 13
 
+/* LCD data pins */
 #define LCD_D4 9
 #define LCD_D5 10
 #define LCD_D6 11

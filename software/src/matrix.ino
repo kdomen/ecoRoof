@@ -1,5 +1,5 @@
 /**
- * matrix.cpp
+ * matrix.ino
  *
  * Matrix routines and animations.
  */
