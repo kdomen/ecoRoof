@@ -15,6 +15,7 @@ struct lcd_status_t {
 };
 
 void lcd_init();
+void lcd_clear_row(unsigned char row);
 void lcd_update_status(struct lcd_status_t status);
 
 #endif /* LCD_H */

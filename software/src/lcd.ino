@@ -31,17 +31,23 @@ void lcd_init() {
   //lcd.setCursor(0, 3); lcd.print("Water Level: null");
 }
 
+void lcd_clear_row(unsigned char row) {
+    lcd.setCursor(0, row);
+    lcd.print("                ");
+    lcd.setCursor(0, row);
+}
+
 void lcd_update_status(struct lcd_status_t status) {
     /* message line */
-    lcd.setCursor(0, 0);
-    lcd.print("                ");
-    lcd.setCursor(0, 0);
+    lcd_clear_row(0);
     lcd.print(status.message);
 
+    /* humidity */
+    lcd_clear_row(1);
+    lcd.print(status.humidity, HEX);
+
     /* temperature */
-    lcd.setCursor(0, 2);
-    lcd.print("                ");
-    lcd.setCursor(0, 2);
+    lcd_clear_row(2);
     lcd.print(status.temp);
     lcd.print((char) 223);
     lcd.print("F");
