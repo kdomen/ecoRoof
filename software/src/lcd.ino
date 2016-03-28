@@ -33,8 +33,9 @@ void lcd_init() {
 
 void lcd_clear_row(unsigned char row) {
     lcd.setCursor(0, row);
-    lcd.print("                ");
+    lcd.print("               *");
     lcd.setCursor(0, row);
+    delay(1000);
 }
 
 void lcd_update_status(struct lcd_status_t status) {
@@ -44,11 +45,12 @@ void lcd_update_status(struct lcd_status_t status) {
 
     /* humidity */
     lcd_clear_row(1);
-    if (status.humidity > 1.00)
+    if (status.humidity > 1.00) {
         lcd.print("OH SHIT!");
-    else
+    } else {
         lcd.print(status.humidity * 100, 2);
-    lcd.print("% humidity");
+        lcd.print("% humidity");
+    }
 
     /* temperature */
     lcd_clear_row(2);
