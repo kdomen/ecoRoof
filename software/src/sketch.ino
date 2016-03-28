@@ -40,7 +40,7 @@ void loop() {
         set_pump(running_pump, HIGH);
 
     status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
-    status.humidity = (float) humidity_read();
+    status.humidity = humidity_read();
 
     lcd_update_status(status);
     delay(800);

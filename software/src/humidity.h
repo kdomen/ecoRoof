@@ -8,6 +8,6 @@
 #define HUMIDITY_H
 
 void humidity_init();
-int humidity_read();
+float humidity_read();
 
 #endif /* HUMIDITY_H */

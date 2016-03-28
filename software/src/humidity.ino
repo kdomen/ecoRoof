@@ -12,10 +12,10 @@ void humidity_init() {
     digitalWrite(HUMIDITY_POWER, LOW);
 }
 
-int humidity_read() {
+float humidity_read() {
     digitalWrite(HUMIDITY_POWER, HIGH);
     int val = analogRead(HUMIDITY_SIGNAL);
     digitalWrite(HUMIDITY_POWER, LOW);
 
-    return val;
+    return val / 616;
 }
