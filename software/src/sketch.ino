@@ -10,7 +10,7 @@
 #include <Arduino.h>
 #include <pins_arduino.h>
 
-volatile unsigned long tick = 0x00;
+volatile unsigned char tick = 0x00;
 volatile int running_pump = NULL_PUMP;
 
 void setup() {
@@ -55,9 +55,8 @@ void loop() {
     water_level = read_water_level();
 
     // write out status stuff to LCD
-    if (tick > 32) {
+    if (tick > 16) {
         tick = 0;
-
         lcd_update_status(humidity, temp, water_level);
     }
 }
