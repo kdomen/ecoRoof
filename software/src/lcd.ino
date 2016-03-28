@@ -36,11 +36,23 @@ void lcd_clear_row(unsigned char row) {
 }
 
 void lcd_update_message(String message) {
+    if (lock)
+        return;
+
+    lock = true;
+
     lcd_clear_row(0);
     lcd.print(message);
+
+    lock = false;
 }
 
 void lcd_update_status(float humidity, float temp, float water_level) {
+    if (lock)
+        return;
+
+    lock = true;
+
     /* humidity */
     lcd_clear_row(1);
     if (humidity > 1.00)
@@ -66,4 +78,6 @@ void lcd_update_status(float humidity, float temp, float water_level) {
         lcd.print(water_level * 100.0, 2);
     }
     lcd.print("% water level");
+
+    lock = false;
 }
