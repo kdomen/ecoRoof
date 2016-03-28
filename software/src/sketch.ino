@@ -14,9 +14,6 @@ volatile unsigned char tick = 0x00;
 volatile int running_pump = NULL_PUMP;
 
 void setup() {
-    Serial.begin(9600);
-    Serial.println("hello world!");
-
     lcd_init();
     pump_init();
     humidity_init();
