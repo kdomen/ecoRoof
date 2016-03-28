@@ -23,8 +23,8 @@ void setup() {
     matrix_all_on();
 
     /* setup upper and lower control buttons */
-    pinMode(UPPER_BUTTON, OUTPUT);
-    pinMode(LOWER_BUTTON, OUTPUT);
+    pinMode(UPPER_BUTTON, INPUT);
+    pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
     attachInterrupt(UPPER_BUTTON_INT, ub_isr, FALLING);
