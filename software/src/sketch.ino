@@ -59,7 +59,7 @@ void loop() {
         tick = 0;
 
         String message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
-        lcd_update_status(message, temp, humidity, water_level);
+        lcd_update_status(message, humidity, temp, water_level);
     }
 }
 
