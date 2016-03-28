@@ -52,8 +52,8 @@
 #define MATRIX_ROW7 39
 
 /* control buttons */
-#define UPPER_BUTTON 2 // blue wire
-#define LOWER_BUTTON 3 // orange wire
+#define UPPER_BUTTON 2 // blue wire   - triggers rain
+#define LOWER_BUTTON 3 // orange wire - triggers irrigation
 #define UPPER_BUTTON_INT 0
 #define LOWER_BUTTON_INT 1
 
