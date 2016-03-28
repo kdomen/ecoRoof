@@ -47,9 +47,7 @@
 #define MATRIX_ROW7 39
 
 /* control buttons */
-#define UPPER_BUTTON_PIN 2
-#define LOWER_BUTTON_PIN 3
-#define UPPER_BUTTON_INT 0
-#define LOWER_BUTTON_INT 1
+#define UPPER_BUTTON 2
+#define LOWER_BUTTON 3
 
 #endif /* CONFIG_H */
