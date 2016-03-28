@@ -7,7 +7,7 @@
 #include "ultrasonic.h"
 #include "config.h"
 
-#define N 20
+#define N 10
 
 float read_water_level() {
     static float previous[N] = {0};
