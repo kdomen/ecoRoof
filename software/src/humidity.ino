@@ -17,5 +17,5 @@ float humidity_read() {
     int val = analogRead(HUMIDITY_SIGNAL);
     digitalWrite(HUMIDITY_POWER, LOW);
 
-    return val / 616;
+    return val / 616.0;
 }
