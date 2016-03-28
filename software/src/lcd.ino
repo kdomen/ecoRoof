@@ -12,6 +12,8 @@
 
 LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
+volatile bool lock = false;
+
 void lcd_init() {
     /* setup contrast and backlight */
     pinMode(LCD_CONTRAST,      OUTPUT);
@@ -23,12 +25,8 @@ void lcd_init() {
     pinMode(LCD_SAFETY_GROUND, OUTPUT);
     digitalWrite(LCD_SAFETY_GROUND, LOW);
 
-    lcd.begin(16, 4);
-    lcd.print("Booting...");
-  //lcd.setCursor(0, 0); lcd.print("Status: null");
-  //lcd.setCursor(0, 1); lcd.print("Moisture: null");
-  //lcd.setCursor(0, 2); lcd.print("Temperature: null");
-  //lcd.setCursor(0, 3); lcd.print("Water Level: null");
+    lcd.begin(20, 4);
+    lcd.print("ecoRoof v1.00");
 }
 
 void lcd_clear_row(unsigned char row) {
