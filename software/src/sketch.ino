@@ -10,8 +10,8 @@
 #include <Arduino.h>
 #include <pins_arduino.h>
 
-volatile unsigned long last_press;
 volatile int running_pump = NULL_PUMP;
+volatile float temp, humidity, water_level;
 
 void setup() {
     Serial.begin(9600);
@@ -23,8 +23,14 @@ void setup() {
     matrix_init();
     matrix_all_on();
 
+    /* lcd timer */
+    TCCR1B |= (1 << WGM12);   // CTC mode
+    TCCR1B |= (1 << CS12);    // 256 prescaler 
+    TIMSK1 |= (1 << OCIE1A);  // enable timer compare interrupt
+    OCR1A = 31250;            // compare match register 16MHz/256/2Hz
+    interrupts(); 
+
     /* setup upper and lower control buttons */
-    last_press = millis();
     pinMode(UPPER_BUTTON, INPUT);
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
@@ -34,8 +40,7 @@ void setup() {
 }
 
 void loop() {
-    struct lcd_status_t status;
-    status.temp = read_temp();
+    unsigned long tick = millis();
 
     // switch pumps
     set_pump(RESV_PUMP, LOW);
@@ -43,12 +48,21 @@ void loop() {
     if (running_pump != NULL_PUMP)
         set_pump(running_pump, HIGH);
 
+    // sample data, real quick
+    temp = read_temp();
+    humidity = humidity_read();
+    water_level = read_water_level();
+}
+
+ISR(TIMER1_COMPA_vect) {
+    struct lcd_status_t status;
+
+    status.temp = temp;
     status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
-    status.humidity = humidity_read();
-    status.water_level = read_water_level();
+    status.humidity = humidity;
+    status.water_level = water_level;
 
     lcd_update_status(status);
-    delay(100);
 }
 
 void ub_isr() {
