@@ -55,7 +55,7 @@ void loop() {
     water_level = read_water_level();
 
     // write out status stuff to LCD
-    if (tick > 127) {
+    if (tick > 32) {
         tick = 0;
 
         String message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
