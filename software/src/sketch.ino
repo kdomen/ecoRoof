@@ -39,20 +39,23 @@ void setup() {
 }
 
 void loop() {
-    unsigned long tick = millis();
-
     // switch pumps
     set_pump(RESV_PUMP, LOW);
     set_pump(RBOX_PUMP, LOW);
     if (running_pump != NULL_PUMP)
         set_pump(running_pump, HIGH);
 
-    struct lcd_status_t status;
-    status.temp = read_temp();
-    status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
-    status.humidity = humidity_read();
-    status.water_level = read_water_level();
-    lcd_update_status(status);
+    static float temp, humidity, water_level;
+
+    temp        = read_temp();
+    humidity    = humidity_read();
+    water_level = read_water_level();
+
+    // write out status stuff to LCD
+    if (millis() % 500 == 0) {
+        String message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
+        lcd_update_status(message, temp, humidity, water_level);
+    }
 }
 
 ISR(TIMER1_COMPA_vect) {
