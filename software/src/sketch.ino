@@ -46,15 +46,16 @@ void loop() {
     set_pump(RBOX_PUMP, LOW);
     if (running_pump != NULL_PUMP)
         set_pump(running_pump, HIGH);
-}
 
-ISR(TIMER1_COMPA_vect) {
     struct lcd_status_t status;
     status.temp = read_temp();
     status.message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
     status.humidity = humidity_read();
     status.water_level = read_water_level();
     lcd_update_status(status);
+}
+
+ISR(TIMER1_COMPA_vect) {
 }
 
 void ub_isr() {
