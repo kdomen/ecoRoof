@@ -12,7 +12,7 @@ float read_water_level() {
         microseconds_to_cm(
             ultrasonic_read());
 
-    return distance - 4;
+    return distance;
   //return (RESV_HEIGHT - distance + 4) / RESV_HEIGHT;
 }
 
