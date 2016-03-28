@@ -12,9 +12,6 @@ float read_water_level() {
         microseconds_to_cm(
             ultrasonic_read());
 
-    Serial.println(ultrasonic_read());
-    Serial.println(distance);
-    return distance;
     return distance / RESV_HEIGHT;
 }
 
@@ -31,12 +28,7 @@ unsigned long ultrasonic_read() {
     
     // measure the return pulse length
     pinMode(US_SIGNAL, INPUT);
-    long duration = pulseIn(US_SIGNAL, HIGH);
-
-    Serial.print("duration = ");
-    Serial.println(duration);
-
-    return duration;
+    return pulseIn(US_SIGNAL, HIGH);
 }
 
 double microseconds_to_cm(long us) {
