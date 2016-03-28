@@ -44,7 +44,7 @@ void lcd_update_status(struct lcd_status_t status) {
 
     /* humidity */
     lcd_clear_row(1);
-    lcd.print(status.humidity, HEX);
+    lcd.print(status.humidity, 4);
 
     /* temperature */
     lcd_clear_row(2);
