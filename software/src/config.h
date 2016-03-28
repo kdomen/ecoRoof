@@ -26,7 +26,7 @@
 #define NULL_PUMP -1 // don't pump at all
 
 /* humidity sensor */
-#define HUMIDITY_POWER  52
+#define HUMIDITY_POWER  53
 #define HUMIDITY_SIGNAL 15
 
 /* main LCD */
