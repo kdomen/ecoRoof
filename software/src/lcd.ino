@@ -37,11 +37,12 @@ void lcd_clear_row(unsigned char row) {
     lcd.setCursor(0, row);
 }
 
-void lcd_update_status(String message, float humidity, float temp, float water_level) {
-    /* message line */
+void lcd_update_message(String message) {
     lcd_clear_row(0);
     lcd.print(message);
+}
 
+void lcd_update_status(float humidity, float temp, float water_level) {
     /* humidity */
     lcd_clear_row(1);
     if (humidity > 1.00)

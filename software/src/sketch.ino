@@ -58,8 +58,7 @@ void loop() {
     if (tick > 32) {
         tick = 0;
 
-        String message = running_pump == RESV_PUMP ? "irrigating..." : "raining...";
-        lcd_update_status(message, humidity, temp, water_level);
+        lcd_update_status(humidity, temp, water_level);
     }
 }
 
@@ -68,8 +67,10 @@ ISR(TIMER1_COMPA_vect) {
 
 void ub_isr() {
     running_pump = RBOX_PUMP;
+    lcd_update_message("raining...");
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
+    lcd_update_message("irrigating...");
 }
