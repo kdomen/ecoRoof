@@ -59,7 +59,7 @@ void lcd_update_status(struct lcd_status_t status) {
     /* water level */
     lcd_clear_row(3);
     if (status.water_level < 0.0 || status.water_level > 1.0)
-        lcd.print("0.00");
+        lcd.print("AAAHHH!");
     else
         lcd.print(status.water_level * 100.0, 2);
     lcd.print("% water level");
