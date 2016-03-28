@@ -45,7 +45,7 @@ void loop() {
     status.water_level = read_water_level();
 
     lcd_update_status(status);
-    delay(800);
+    delay(100);
 }
 
 void ub_isr() {
