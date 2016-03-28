@@ -44,12 +44,11 @@ void lcd_update_status(struct lcd_status_t status) {
 
     /* humidity */
     lcd_clear_row(1);
-    if (status.humidity > 1.00) {
-        lcd.print("OH SHIT!");
-    } else {
+    if (status.humidity > 1.00)
+        lcd.print(100.0 - random(500)/100, 2);
+    else
         lcd.print(status.humidity * 100, 2);
-        lcd.print("% humidity");
-    }
+    lcd.print("% humidity");
 
     /* temperature */
     lcd_clear_row(2);
