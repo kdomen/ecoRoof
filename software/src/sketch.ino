@@ -52,16 +52,24 @@ void loop() {
 }
 
 void ub_isr() {
+    Serial.println("upper button");
+
     if ((millis() - last_press) < 100)
         return;
+
+    Serial.println("made it!");
 
     running_pump = RBOX_PUMP;
     last_press = millis();
 }
 
 void lb_isr() {
+    Serial.println("lower button");
+
     if ((millis() - last_press) < 100)
         return;
+
+    Serial.println("made it!");
 
     running_pump = RESV_PUMP;
     last_press = millis();
