@@ -36,7 +36,12 @@ unsigned long ultrasonic_read() {
     
     // measure the return pulse length
     pinMode(US_SIGNAL, INPUT);
-    return pulseIn(US_SIGNAL, HIGH);
+    unsigned long duration =  pulseIn(US_SIGNAL, HIGH);
+
+    Serial.print("duration = ");
+    Serial.println(duration);
+
+    return duration;
 }
 
 double microseconds_to_cm(long us) {
