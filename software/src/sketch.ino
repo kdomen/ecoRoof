@@ -25,9 +25,8 @@ void setup() {
     /* setup upper and lower control buttons */
     pinMode(UPPER_BUTTON, OUTPUT);
     pinMode(LOWER_BUTTON, OUTPUT);
-
-    attachInterrupt(0, ub_isr, CHANGE);
-    attachInterrupt(1, lb_isr, CHANGE);
+    attachInterrupt(UPPER_BUTTON_INT, ub_isr, CHANGE);
+    attachInterrupt(LOWER_BUTTON_INT, lb_isr, CHANGE);
 }
 
 void loop() {

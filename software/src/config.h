@@ -54,5 +54,7 @@
 /* control buttons */
 #define UPPER_BUTTON 2
 #define LOWER_BUTTON 3
+#define UPPER_BUTTON_INT 0
+#define UPPER_BUTTON_INT 1
 
 #endif /* CONFIG_H */
