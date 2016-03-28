@@ -29,8 +29,6 @@ void setup() {
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
-    attachInterrupt(UPPER_BUTTON_INT, ub_isr, CHANGE);
-    attachInterrupt(LOWER_BUTTON_INT, lb_isr, CHANGE);
 }
 
 void loop() {
@@ -49,16 +47,4 @@ void loop() {
 
     lcd_update_status(status);
     delay(100);
-}
-
-void ub_isr() {
-    Serial.println("upper button");
-
-    running_pump = RBOX_PUMP;
-}
-
-void lb_isr() {
-    Serial.println("lower button");
-
-    running_pump = RESV_PUMP;
 }
