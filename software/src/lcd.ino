@@ -59,7 +59,7 @@ void lcd_update_status(float humidity, float temp, float water_level) {
         lcd.print(100.0 - random(500)/100.0, 2);
     else
         lcd.print(humidity * 100, 2);
-    lcd.print("% humidity");
+    lcd.print("% saturation");
 
     /* temperature */
     lcd_clear_row(2);
@@ -71,9 +71,6 @@ void lcd_update_status(float humidity, float temp, float water_level) {
     lcd_clear_row(3);
     if (water_level < 0.0 || water_level > 1.0) {
         lcd.print("0.00");
-    } else if (water_level == 1.0) {
-        lcd.print("AAAHHH!!");
-        return;
     } else {
         lcd.print(water_level * 100.0, 2);
     }
