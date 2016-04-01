@@ -6,16 +6,19 @@
 
 #include "pump.h"
 #include "config.h"
-#include <assert.h>
+
+volatile bool lock = false;
 
 void pump_init() {
     pinMode(RESV_PUMP, OUTPUT);
     pinMode(RBOX_PUMP, OUTPUT);
 }
 
-void set_pump(int pump_pin, int state) {
-    assert(state == HIGH || state == LOW);
-    assert(pump_pin == RESV_PUMP || pump_pin == RBOX_PUMP);
+void set_pump(int pump, int state) {
+    if (lock)
+        return;
 
-    digitalWrite(pump_pin, state);
+    lock = true;
+    digitalWrite(pump, state);
+    lock = false;
 }

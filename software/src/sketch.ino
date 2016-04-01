@@ -11,7 +11,6 @@
 #include <pins_arduino.h>
 
 volatile unsigned char tick = 0x00;
-volatile int running_pump = NULL_PUMP;
 
 void setup() {
     lcd_init();
