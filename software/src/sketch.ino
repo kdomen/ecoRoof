@@ -10,21 +10,15 @@
 #include <Arduino.h>
 #include <pins_arduino.h>
 
-volatile unsigned char tick = 0x00;
+volatile unsigned int tick = 0x00;
 volatile int running_pump = NULL_PUMP;
+volatile unsigned char pump_duration = 0;
 
 void setup() {
     lcd_init();
     pump_init();
     humidity_init();
     matrix_init();
-
-    /* lcd timer */
-    TCCR1B |= (1 << WGM12);   // CTC mode
-    TCCR1B |= (1 << CS12);    // 256 prescaler 
-    TIMSK1 |= (1 << OCIE1A);  // enable timer compare interrupt
-    OCR1A = 31250;            // compare match register 16MHz/256/2Hz
-    interrupts(); 
 
     /* setup upper and lower control buttons
      * in interrupt mode AND pullup mode */
@@ -37,50 +31,53 @@ void setup() {
 }
 
 void loop() {
-    tick++;
+    unsigned int tick = 0;
+    float temp, humidity, water_level;
 
-    // switch pumps
-    set_pump(RESV_PUMP, LOW);
-    set_pump(RBOX_PUMP, LOW);
-    if (running_pump != NULL_PUMP)
-        set_pump(running_pump, HIGH);
-    else
-        lcd_update_message("Waiting...");
+    while (1) {
+        tick++;
+        delay(1);
 
-    static float temp, humidity, water_level;
+        // switch pumps
+        set_pump(RESV_PUMP, LOW);
+        set_pump(RBOX_PUMP, LOW);
+        if (running_pump != NULL_PUMP)
+            set_pump(running_pump, HIGH);
+        else
+          //lcd_update_message("Waiting...");
 
-    temp        = read_temp();
-    humidity    = humidity_read();
-    water_level = read_water_level();
+        lcd_update_message(String(tick));
 
-    delay(100);
-    lcd_update_status(humidity, temp, water_level);
+        if (--pump_duration == 0) {
+            set_pump(RESV_PUMP, LOW);
+            set_pump(RBOX_PUMP, LOW);
+        }
 
-    static int row = 0;
+        // every 100 ms
+        if (tick % 1 == 100) {
+            temp        = read_temp();
+        }
+            water_level = read_water_level();
 
-    if (++row > 6)
-        row = 0;
+        // once a second
+        if (tick % 1000 == 0) {
+            humidity  = humidity_read();
+        }
 
-    matrix_set_all(LOW);
-    matrix_set_row(row, HIGH);
-
-    // write out status stuff to LCD and LED matrix
-  //if (tick > 8) {
-  //    tick = 0;
-  //    lcd_update_status(humidity, temp, water_level);
-  //    matrix_graph(water_level);
-  //}
-}
-
-ISR(TIMER1_COMPA_vect) {
+        // every 500 ms
+            lcd_update_status(humidity, temp, water_level);
+            matrix_graph(water_level);
+    }
 }
 
 void ub_isr() {
     running_pump = RBOX_PUMP;
+    pump_duration = 1;
     lcd_update_message("Raining...");
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
+    pump_duration = 1;
     lcd_update_message("Irrigating...");
 }

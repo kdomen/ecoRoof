@@ -63,7 +63,6 @@ void matrix_graph(float percentage) {
 
     matrix_set_all(LOW);
 
-    while (top--) {
+    while (top--)
         matrix_set_row(top, HIGH);
-    }
 }

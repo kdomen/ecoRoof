@@ -18,6 +18,10 @@ float read_water_level() {
 
     double perc = (RESV_HEIGHT - distance) / RESV_HEIGHT;
 
+    perc /= 0.68;
+    if (perc > 1.00)
+        perc = 1.00;
+
     for (int i = 0; i < N; i++) {
         previous[i] = previous[i+1];
     }
