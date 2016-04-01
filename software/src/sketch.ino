@@ -20,7 +20,7 @@ void setup() {
     humidity_init();
     matrix_init();
 
-    lcd_update_message("Waiting...");
+    lcd_update_status("Waiting...");
 
     /* setup upper and lower control buttons
      * in interrupt mode AND pullup mode */
@@ -32,66 +32,47 @@ void setup() {
     attachInterrupt(LOWER_BUTTON_INT, lb_isr, FALLING);
 }
 
-#if 0
 void loop() {
     unsigned int tick = 0;
-    float temp, humidity, water_level;
+
+    lcd_update_temp(42.00);
+    lcd_update_humidity(42.00);
+    lcd_update_water_level(42.00);
 
     while (1) {
         tick++;
 
+        lcd_update_status("hello");
+
         if (--pump_duration > 0) {
             set_pump(RESV_PUMP, LOW);
             set_pump(RBOX_PUMP, LOW);
-
-            if (running_pump != NULL_PUMP)
-                set_pump(running_pump, HIGH);
-        } else {
-            pump_duration = 0;
-            running_pump = NULL_PUMP;
+            set_pump(running_pump, HIGH);
         }
 
-        // every 100 ms
-        if (tick % 1 == 0) {
-            temp        = read_temp();
-            water_level = read_water_level();
-        }
+        // temp
+        lcd_update_temp(read_temp());
 
-        // once a second
-        if (tick % 1000 == 0) {
-            humidity  = humidity_read();
-        }
+        // water level
+        float wl = read_water_level();
+        lcd_update_water_level(wl);
+        matrix_graph(wl);
 
-        if (tick % 2 == 0) {
-            lcd_update_message(String(tick));
-            lcd_update_status(humidity, temp, water_level);
-            matrix_graph(water_level);
+        // humidity
+        if (tick % 100 == 0) {
+            lcd_update_humidity(humidity_read());
         }
     }
-}
-#endif
-
-void loop() {
-    float temp, humidity, water_level;
-
-    temp        = read_temp();
-    water_level = read_water_level();
-    humidity  = humidity_read();
-
-    lcd_update_status(humidity, temp, water_level);
-    matrix_graph(water_level);
-
-    delay(1000);
 }
 
 void ub_isr() {
     running_pump = RBOX_PUMP;
     pump_duration = 500;
-    lcd_update_message("Raining...");
+    lcd_update_status("Raining...");
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
     pump_duration = 500;
-    lcd_update_message("Irrigating...");
+    lcd_update_status("Irrigating...");
 }
