@@ -54,9 +54,6 @@ void loop() {
     }
 }
 
-ISR(TIMER1_COMPA_vect) {
-}
-
 void ub_isr() {
     running_pump = RBOX_PUMP;
     lcd_update_message("Raining...");
