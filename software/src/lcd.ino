@@ -26,7 +26,6 @@ void lcd_init() {
     digitalWrite(LCD_SAFETY_GROUND, LOW);
 
     lcd.begin(20, 4);
-    lcd.print("ecoRoof v1.00");
 }
 
 void lcd_clear_row(unsigned char row) {
