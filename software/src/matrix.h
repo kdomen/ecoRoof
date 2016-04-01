@@ -8,7 +8,8 @@
 #define MATRIX_H
 
 void matrix_init();
-void matrix_all_on();
-void matrix_all_off();
+void matrix_set_row(int row, int state);
+void matrix_set_all(int state);
+void matrix_graph(float percentage);
 
 #endif /* MATRIX_H */

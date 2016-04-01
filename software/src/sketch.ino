@@ -18,9 +18,9 @@ void setup() {
     pump_init();
     humidity_init();
     matrix_init();
-    matrix_all_on();
 
-    /* setup upper and lower control buttons */
+    /* setup upper and lower control buttons
+     * in interrupt mode AND pullup mode */
     pinMode(UPPER_BUTTON, INPUT);
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
@@ -46,10 +46,11 @@ void loop() {
     humidity    = humidity_read();
     water_level = read_water_level();
 
-    // write out status stuff to LCD
+    // write out status stuff to LCD and LED matrix
     if (tick > 8) {
         tick = 0;
         lcd_update_status(humidity, temp, water_level);
+        matrix_graph(water_level);
     }
 }
 
