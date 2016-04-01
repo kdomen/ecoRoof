@@ -11,6 +11,7 @@
 #include <pins_arduino.h>
 
 volatile unsigned char tick = 0x00;
+volatile int running_pump = NULL_PUMP;
 
 void setup() {
     lcd_init();
@@ -52,12 +53,23 @@ void loop() {
     humidity    = humidity_read();
     water_level = read_water_level();
 
+    delay(100);
+    lcd_update_status(humidity, temp, water_level);
+
+    static int row = 0;
+
+    if (++row > 6)
+        row = 0;
+
+    matrix_set_all(LOW);
+    matrix_set_row(row, HIGH);
+
     // write out status stuff to LCD and LED matrix
-    if (tick > 8) {
-        tick = 0;
-        lcd_update_status(humidity, temp, water_level);
-        matrix_graph(water_level);
-    }
+  //if (tick > 8) {
+  //    tick = 0;
+  //    lcd_update_status(humidity, temp, water_level);
+  //    matrix_graph(water_level);
+  //}
 }
 
 ISR(TIMER1_COMPA_vect) {

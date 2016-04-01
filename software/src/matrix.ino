@@ -8,13 +8,13 @@
 #include "config.h"
 
 static const int rows[] = {
+    MATRIX_ROW0,
     MATRIX_ROW1,
     MATRIX_ROW2,
     MATRIX_ROW3,
     MATRIX_ROW4,
     MATRIX_ROW5,
-    MATRIX_ROW6,
-    MATRIX_ROW7
+    MATRIX_ROW6
 };
 
 /**
@@ -46,6 +46,9 @@ void matrix_set_row(int row, int state) {
  * state: HIGH or LOW
  */
 void matrix_set_all(int state) {
+    for (int i = 0; i < 7; i++) {
+        matrix_set_row(i, state);
+    }
 }
 
 /**

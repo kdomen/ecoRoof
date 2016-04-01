@@ -43,13 +43,13 @@
 #define LCD_D7 12
 
 /* matrix row control pins */
-#define MATRIX_ROW1 51
-#define MATRIX_ROW2 49
-#define MATRIX_ROW3 47
-#define MATRIX_ROW4 45
-#define MATRIX_ROW5 43
-#define MATRIX_ROW6 41
-#define MATRIX_ROW7 39
+#define MATRIX_ROW0 49
+#define MATRIX_ROW1 45
+#define MATRIX_ROW2 41
+#define MATRIX_ROW3 37
+#define MATRIX_ROW4 33
+#define MATRIX_ROW5 29
+#define MATRIX_ROW6 25
 
 /* control buttons */
 #define UPPER_BUTTON 2 // blue wire   - triggers rain
