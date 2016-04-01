@@ -20,13 +20,6 @@ void setup() {
     matrix_init();
     matrix_all_on();
 
-    /* lcd timer */
-    TCCR1B |= (1 << WGM12);   // CTC mode
-    TCCR1B |= (1 << CS12);    // 256 prescaler 
-    TIMSK1 |= (1 << OCIE1A);  // enable timer compare interrupt
-    OCR1A = 31250;            // compare match register 16MHz/256/2Hz
-    interrupts(); 
-
     /* setup upper and lower control buttons */
     pinMode(UPPER_BUTTON, INPUT);
     pinMode(LOWER_BUTTON, INPUT);
