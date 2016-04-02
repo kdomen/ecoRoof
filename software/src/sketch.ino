@@ -16,8 +16,8 @@ volatile int running_pump = 0;
 volatile int pump_duration = 0;
 
 void setup() {
-    float contrast = 1.57f;
-    EEPROM.get(LCD_CONTRAST_ADDR, contrast);
+    unsigned char contrast = 81;
+    contrast = EEPROM.read(LCD_CONTRAST_ADDR);
 
     lcd_init(contrast);
     pump_init();
@@ -42,7 +42,7 @@ void setup() {
             else if (digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
                 analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
 
-            EEPROM.put(LCD_CONTRAST_ADDR, contrast);
+            EEPROM.update(LCD_CONTRAST_ADDR, contrast);
 
             delay(10);
         }
