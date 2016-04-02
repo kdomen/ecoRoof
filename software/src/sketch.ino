@@ -113,7 +113,7 @@ void loop() {
 
 void ub_isr() {
     running_pump = RBOX_PUMP;
-    pump_duration = 50;
+    pump_duration = 100;
 }
 
 void lb_isr() {
