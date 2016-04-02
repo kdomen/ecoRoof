@@ -100,7 +100,8 @@ void loop() {
 
         // water level
         float wl = read_water_level();
-        lcd_update_water_level(wl);
+        if (tick % 10 == 0)
+            lcd_update_water_level(wl);
         matrix_graph(wl);
 
         // humidity
