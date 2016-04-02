@@ -47,6 +47,7 @@ void setup() {
 
             // only read/write if a button was pressed
             if (ub || lb) {
+            lcd_update_status(String(contrast));
                 if (EEPROM.read(LCD_CONTRAST_ADDR) != contrast)
                     EEPROM.write(LCD_CONTRAST_ADDR, contrast);
             }
