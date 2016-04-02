@@ -5,6 +5,7 @@
  */
 
 #include "matrix.h"
+#include "lcd.h"
 #include "config.h"
 
 static const int rows[] = {
@@ -59,10 +60,14 @@ void matrix_set_all(int state) {
  * percentage: a float value between 0.00 and 1.00 (inclusive)
  */
 void matrix_graph(float percentage) {
+    if (percentage < 0.00 || percentage > 1.00)
+        return;
+
     int top = (int) ceil(percentage * 7.00);
 
-    matrix_set_all(LOW);
+    matrix_set_all(HIGH);
 
-    while (top--)
-        matrix_set_row(top, HIGH);
+    for (int i = 0; i < (7-top); i++) {
+        matrix_set_row(i, LOW);
+    }
 }

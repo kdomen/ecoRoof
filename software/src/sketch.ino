@@ -11,7 +11,7 @@
 #include <pins_arduino.h>
 
 volatile unsigned int tick = 0x00;
-volatile int running_pump = NULL_PUMP;
+volatile int running_pump = 0;
 volatile int pump_duration = 0;
 
 void setup() {
@@ -33,21 +33,34 @@ void setup() {
 }
 
 void loop() {
-    unsigned int tick = 0;
+    int tick = 0;
 
     lcd_update_temp(42.00);
-    lcd_update_humidity(42.00);
-    lcd_update_water_level(42.00);
-
-    while (1);
+    lcd_update_humidity(0.42);
+    lcd_update_water_level(0.42);
 
     while (1) {
-        tick++;
+        if (++tick > 999)
+            tick = 0;
+
+        // set pumps
+        set_pump(RESV_PUMP, LOW);
+        set_pump(RBOX_PUMP, LOW);
 
         if (--pump_duration > 0) {
-            set_pump(RESV_PUMP, LOW);
-            set_pump(RBOX_PUMP, LOW);
             set_pump(running_pump, HIGH);
+        } else {
+            pump_duration = 0;
+            running_pump = NULL_PUMP;
+        }
+
+        // update status
+        if (tick % 5 == 0) {
+            String cd = String((int) pump_duration / 10 + 1);
+
+            if      (running_pump == NULL_PUMP) lcd_update_status("Waiting... ");
+            else if (running_pump == RBOX_PUMP) lcd_update_status("Raining... " + cd);
+            else if (running_pump == RESV_PUMP) lcd_update_status("Irrigating... " + cd);
         }
 
         // temp
@@ -67,12 +80,10 @@ void loop() {
 
 void ub_isr() {
     running_pump = RBOX_PUMP;
-    pump_duration = 500;
-    lcd_update_status("Raining...");
+    pump_duration = 50;
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
-    pump_duration = 500;
-    lcd_update_status("Irrigating...");
+    pump_duration = 50;
 }

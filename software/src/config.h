@@ -20,10 +20,10 @@
 /* reservoir and rainbox pump control */
 #define RESV_PUMP 24 // to irrigate...
 #define RBOX_PUMP 26 // to simulate rain...
-#define NULL_PUMP -1 // don't pump at all
+#define NULL_PUMP -1 // do not pump at all
 
 /* ultrasonic sensor */
-#define US_SIGNAL 53
+#define US_SIGNAL 42
 
 /* humidity sensor */
 #define HUMIDITY_POWER  52
@@ -43,13 +43,13 @@
 #define LCD_D7 12
 
 /* matrix row control pins */
-#define MATRIX_ROW0 25
-#define MATRIX_ROW1 29
-#define MATRIX_ROW2 33
-#define MATRIX_ROW3 37
-#define MATRIX_ROW4 41
-#define MATRIX_ROW5 45
-#define MATRIX_ROW6 49
+#define MATRIX_ROW0 40
+#define MATRIX_ROW1 38
+#define MATRIX_ROW2 36
+#define MATRIX_ROW3 34
+#define MATRIX_ROW4 32
+#define MATRIX_ROW5 30
+#define MATRIX_ROW6 28
 
 /* control buttons */
 #define UPPER_BUTTON 2 // blue wire   - triggers rain
