@@ -13,6 +13,7 @@
 volatile unsigned int tick = 0x00;
 volatile int running_pump = 0;
 volatile int pump_duration = 0;
+volatile float contrast = 1.57;
 
 void setup() {
     lcd_init();
@@ -81,9 +82,11 @@ void loop() {
 void ub_isr() {
     running_pump = RBOX_PUMP;
     pump_duration = 50;
+    analogWrite(LCD_CONTRAST, (voltage+=0.10)/5*255);
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
     pump_duration = 50;
+    analogWrite(LCD_CONTRAST, (voltage-=0.10)/5*255);
 }
