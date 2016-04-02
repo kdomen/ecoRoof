@@ -33,7 +33,6 @@ void setup() {
     digitalWrite(LOWER_BUTTON, HIGH);
 
     /* check if we are in config mode */
-#if 0
     if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON)) {
         lcd_update_status("CONFIG");
 
@@ -59,7 +58,6 @@ void setup() {
             delay(10);
         }
     }
-#endif
 
     /* enable button interrupts */
     attachInterrupt(UPPER_BUTTON_INT, ub_isr, FALLING);
