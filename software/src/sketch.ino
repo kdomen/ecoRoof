@@ -104,7 +104,7 @@ void loop() {
         matrix_graph(wl);
 
         // humidity
-        if (tick % 100 == 0) {
+        if (tick % 200 == 0) {
             lcd_update_humidity(humidity_read());
         }
     }
