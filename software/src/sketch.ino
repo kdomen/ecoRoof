@@ -16,7 +16,7 @@ volatile int running_pump = 0;
 volatile int pump_duration = 0;
 
 void setup() {
-    float contrast = 1.57;
+    float contrast = 1.57f;
     EEPROM.get(LCD_CONTRAST_ADDR, contrast);
 
     lcd_init(contrast);
@@ -31,8 +31,6 @@ void setup() {
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
-
-    EEPROM.put(0x00, contrast);
 
     /* check if we are in config mode */
     if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON)) {
