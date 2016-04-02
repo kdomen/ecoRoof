@@ -38,8 +38,6 @@ void setup() {
                 analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
             else if (digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
                 analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
-            else if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
-                lcd_update_status("AAAAAHHHHH!!");
 
             delay(10);
         }
