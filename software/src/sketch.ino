@@ -39,10 +39,10 @@ void loop() {
     lcd_update_humidity(42.00);
     lcd_update_water_level(42.00);
 
+    while (1);
+
     while (1) {
         tick++;
-
-        lcd_update_status("hello");
 
         if (--pump_duration > 0) {
             set_pump(RESV_PUMP, LOW);
