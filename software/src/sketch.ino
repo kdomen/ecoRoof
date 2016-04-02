@@ -100,7 +100,7 @@ void loop() {
 
         // water level
         float wl = read_water_level();
-        if (tick % 10 == 0)
+        if (tick % 6 == 0)
             lcd_update_water_level(wl);
         matrix_graph(wl);
 
