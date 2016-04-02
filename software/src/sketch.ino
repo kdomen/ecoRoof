@@ -45,8 +45,8 @@ void setup() {
             else if (!ub && lb)
                 analogWrite(LCD_CONTRAST, ++contrast);
 
-            if (contrast > 175)
-                contrast = 175;
+            if (contrast > 160)
+                contrast = 160;
 
             // only read/write if a button was pressed
             if (ub || lb) {
