@@ -32,7 +32,16 @@ void setup() {
     /* check if we are in config mode */
     if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON)) {
         lcd_update_status("CONFIG");
-        while (1);
+
+        if (digitalRead(UPPER_BUTTON) & !digitalRead(LOWER_BUTTON)) {
+            analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
+        } else if (digitalRead(UPPER_BUTTON) & !digitalRead(LOWER_BUTTON)) {
+            analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
+        } else {
+            lcd_update_status("AAAAAHHHHH!!");
+        }
+
+        delay(10);
     }
 
     /* enable button interrupts */
@@ -89,11 +98,9 @@ void loop() {
 void ub_isr() {
     running_pump = RBOX_PUMP;
     pump_duration = 50;
-    analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
     pump_duration = 50;
-    analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
 }
