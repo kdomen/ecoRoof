@@ -12,12 +12,12 @@
 
 LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
-void lcd_init() {
+void lcd_init(contrast) {
     /* setup contrast and backlight */
     pinMode(LCD_CONTRAST,      OUTPUT);
     pinMode(LCD_BACKLIGHT,     OUTPUT);
-    analogWrite(LCD_CONTRAST,  (1.57) /5*255); /* 1.57V */
-    analogWrite(LCD_BACKLIGHT, (3.20) /5*255); /* 3.20V */
+    analogWrite(LCD_CONTRAST,  (contrast) /5*255); /* 1.57V is a good value  */
+    analogWrite(LCD_BACKLIGHT, (3.20)     /5*255); /* 3.20V */
 
     /* safety ground -- just in case! */
     pinMode(LCD_SAFETY_GROUND, OUTPUT);

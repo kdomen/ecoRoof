@@ -35,6 +35,7 @@
 #define LCD_SAFETY_GROUND 6
 #define LCD_ENABLE 7
 #define LCD_BACKLIGHT 13
+#define LCD_CONTRAST_ADDR 0x00 // eeprom address
 
 /* LCD data pins */
 #define LCD_D4 9

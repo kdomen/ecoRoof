@@ -7,16 +7,18 @@
 #include "humidity.h"
 #include "ultrasonic.h"
 
+#include <EEPROM.h>
 #include <Arduino.h>
 #include <pins_arduino.h>
 
 volatile unsigned int tick = 0x00;
 volatile int running_pump = 0;
 volatile int pump_duration = 0;
-volatile float contrast = 1.57;
 
 void setup() {
-    lcd_init();
+    float contrast = EEPROM.get(LCD_CONTRAST_ADDR);
+
+    lcd_init(contrast);
     pump_init();
     humidity_init();
     matrix_init();
@@ -29,6 +31,8 @@ void setup() {
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
 
+    EEPROM.put(0x00, contrast);
+
     /* check if we are in config mode */
     if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON)) {
         lcd_update_status("CONFIG");
@@ -38,6 +42,8 @@ void setup() {
                 analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
             else if (digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
                 analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
+
+            EEPROM.put(LCD_CONTRAST_ADDR, contrast);
 
             delay(10);
         }
