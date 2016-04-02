@@ -118,5 +118,5 @@ void ub_isr() {
 
 void lb_isr() {
     running_pump = RESV_PUMP;
-    pump_duration = 50;
+    pump_duration = 100;
 }
