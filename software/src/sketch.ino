@@ -23,12 +23,19 @@ void setup() {
 
     lcd_update_status("Waiting...");
 
-    /* setup upper and lower control buttons
-     * in interrupt mode AND pullup mode */
+    /* setup upper and lower control buttons in pullup mode */
     pinMode(UPPER_BUTTON, INPUT);
     pinMode(LOWER_BUTTON, INPUT);
     digitalWrite(UPPER_BUTTON, HIGH);
     digitalWrite(LOWER_BUTTON, HIGH);
+
+    /* check if we are in config mode */
+    if (!digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON)) {
+        lcd_update_status("CONFIG");
+        while (1);
+    }
+
+    /* enable button interrupts */
     attachInterrupt(UPPER_BUTTON_INT, ub_isr, FALLING);
     attachInterrupt(LOWER_BUTTON_INT, lb_isr, FALLING);
 }
