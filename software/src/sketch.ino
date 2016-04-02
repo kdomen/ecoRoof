@@ -95,12 +95,12 @@ void loop() {
             else if (running_pump == RESV_PUMP) lcd_update_status("Irrigating... " + cd);
         }
 
-        // temp and water level
+        // temp
+        lcd_update_temp(read_temp());
+
+        // water level
         float wl = read_water_level();
-        if (tick % 10 == 0) {
-            lcd_update_water_level(wl);
-            lcd_update_temp(read_temp());
-        }
+        lcd_update_water_level(wl);
         matrix_graph(wl);
 
         // humidity
