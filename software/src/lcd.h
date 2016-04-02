@@ -7,7 +7,7 @@
 #ifndef LCD_H
 #define LCD_H
 
-void lcd_init(float contrast);
+void lcd_init(unsigned char contrast);
 void lcd_clear_row(unsigned char row);
 
 void lcd_update_status(String message);

@@ -37,14 +37,19 @@ void setup() {
         lcd_update_status("CONFIG");
 
         while (1) {
-            if (!digitalRead(UPPER_BUTTON) && digitalRead(LOWER_BUTTON))
-                analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
-            else if (digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
-                analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
+            int ub = !digitalRead(UPPER_BUTTON);
+            int lb = !digitalRead(LOWER_BUTTON);
 
-            unsigned char old = EEPROM.read(LCD_CONTRAST_ADDR);
-            if (old != contrast)
-                EEPROM.write(LCD_CONTRAST_ADDR, contrast);
+            if (ub && !lb)
+                analogWrite(LCD_CONTRAST, ++contrast);
+            else if (!ub && lb)
+                analogWrite(LCD_CONTRAST, --contrast);
+
+            // only read/write if a button was pressed
+            if (ub || lb) {
+                if (EEPROM.read(LCD_CONTRAST_ADDR) != contrast)
+                    EEPROM.write(LCD_CONTRAST_ADDR, contrast);
+            }
 
             delay(10);
         }
