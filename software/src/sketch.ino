@@ -82,11 +82,11 @@ void loop() {
 void ub_isr() {
     running_pump = RBOX_PUMP;
     pump_duration = 50;
-    analogWrite(LCD_CONTRAST, (contrast+=0.05)/5*255);
+    analogWrite(LCD_CONTRAST, (contrast+=0.01)/5*255);
 }
 
 void lb_isr() {
     running_pump = RESV_PUMP;
     pump_duration = 50;
-    analogWrite(LCD_CONTRAST, (contrast-=0.05)/5*255);
+    analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
 }
