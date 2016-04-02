@@ -42,7 +42,9 @@ void setup() {
             else if (digitalRead(UPPER_BUTTON) && !digitalRead(LOWER_BUTTON))
                 analogWrite(LCD_CONTRAST, (contrast-=0.01)/5*255);
 
-            EEPROM.update(LCD_CONTRAST_ADDR, contrast);
+            unsigned char old = EEPROM.read(LCD_CONTRAST_ADDR);
+            if (old != contrast)
+                EEPROM.write(LCD_CONTRAST_ADDR, contrast);
 
             delay(10);
         }
