@@ -41,9 +41,12 @@ void setup() {
             int lb = !digitalRead(LOWER_BUTTON);
 
             if (ub && !lb)
-                analogWrite(LCD_CONTRAST, ++contrast);
-            else if (!ub && lb)
                 analogWrite(LCD_CONTRAST, --contrast);
+            else if (!ub && lb)
+                analogWrite(LCD_CONTRAST, ++contrast);
+
+            if (contrast > 175)
+                contrast = 175;
 
             // only read/write if a button was pressed
             if (ub || lb) {
