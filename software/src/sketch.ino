@@ -75,34 +75,41 @@ void loop() {
         if (++tick > 999)
             tick = 0;
 
+        // water level
+        float wl = read_water_level();
+        if (tick % 6 == 0)
+            lcd_update_water_level(wl);
+        matrix_graph(wl);
+
         // set pumps
         set_pump(RESV_PUMP, LOW);
         set_pump(RBOX_PUMP, LOW);
 
-        if (--pump_duration > 0) {
-            set_pump(running_pump, HIGH);
-        } else {
-            pump_duration = 0;
-            running_pump = NULL_PUMP;
+        if (wl > 0.35) {
+            if (--pump_duration > 0) {
+                set_pump(running_pump, HIGH);
+            } else {
+                pump_duration = 0;
+                running_pump = NULL_PUMP;
+            }
         }
 
         // update status
         if (tick % 5 == 0) {
             String cd = String((int) pump_duration / 10 + 1);
 
-            if      (running_pump == NULL_PUMP) lcd_update_status("Waiting... ");
+            if (wl < 0.35) {
+                lcd_update_status("Refill reservoir.");
+                pump_duration = 0;
+                running_pump = NULL_PUMP;
+            }
+            else if (running_pump == NULL_PUMP) lcd_update_status("Waiting... ");
             else if (running_pump == RBOX_PUMP) lcd_update_status("Raining... " + cd);
             else if (running_pump == RESV_PUMP) lcd_update_status("Irrigating... " + cd);
         }
 
         // temp
         lcd_update_temp(read_temp());
-
-        // water level
-        float wl = read_water_level();
-        if (tick % 6 == 0)
-            lcd_update_water_level(wl);
-        matrix_graph(wl);
 
         // humidity
         if (tick % 200 == 0) {
