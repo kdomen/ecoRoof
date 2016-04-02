@@ -16,7 +16,8 @@ volatile int running_pump = 0;
 volatile int pump_duration = 0;
 
 void setup() {
-    float contrast = EEPROM.get(LCD_CONTRAST_ADDR);
+    float contrast = 1.57;
+    EEPROM.get(LCD_CONTRAST_ADDR, contrast);
 
     lcd_init(contrast);
     pump_init();
